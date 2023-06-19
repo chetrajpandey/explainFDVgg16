@@ -28,6 +28,7 @@ For simplification:  folder inside data_labels, named simplified_data_labels tha
 (a) model.py: This module contains the architecture of our model. Passing train=True utilizes the logsoftmax on the final activation. To get the probabilities during model predictions, pass train=False, and apply softmax to obtain the probabilities.<br /> 
 (b) dataloader.py: This contains custom-defined data loaders for loading FL and NF class for selected augmentations.<br /> 
 (c) evaluation.py: This includes functions to convert tensors to sklearn compatible array to compute confusion matrix. Furthermore TSS and HSS skill scores definition.<br /> 
+(e)initializenn.py: This contains code to initializes the FC-layer of the network with Kaiming and Xavier Iniliation. Choose the method of initialization inside model.py<br /> 
 (d) train.py: This module is the main module to train the model. Uses argument parsers for parameters change. This has seven paramters to change the model configuration:<br /> 
 (i) --fold: choose from 1 to 4, to run the corresponding fold in 4CV-cross validation; default=1<br /> 
 (ii) --epochs: number of epochs; default=50<br /> 
