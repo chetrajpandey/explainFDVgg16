@@ -21,11 +21,11 @@ labeling.py generates labels with multiple columns that we can use for post resu
 For simplification:  folder inside data_labels, named simplified_data_labels that contains two columns: the name of the file and actual target that is sufficient to train the model.
 
 #### 3. modeling:
- This code requires two GPUS, for the current batchsize for VGG16 and ResNet Model, but the code is configured to use two GPUS for all three models.
+ This code requires two GPUS, for the current batchsize for VGG16 Model, and the code is configured to use two GPUS for while training.
  Modify the line that uses nn.DataParallel in train.py to use a single GPU. 
  <br/>
 
-(a) model.py: This module contains the architecture of our model which can integrate the initial added convolutional layers to the pretrained AlexNet, VGG16, and ResNet34. Passing train=True utilizes the logsoftmax on the final activation. To get the probabilities during model predictions, pass train=False, and apply softmax to obtain the probabilities.<br /> 
+(a) model.py: This module contains the architecture of our model. Passing train=True utilizes the logsoftmax on the final activation. To get the probabilities during model predictions, pass train=False, and apply softmax to obtain the probabilities.<br /> 
 (b) dataloader.py: This contains custom-defined data loaders for loading FL and NF class for selected augmentations.<br /> 
 (c) evaluation.py: This includes functions to convert tensors to sklearn compatible array to compute confusion matrix. Furthermore TSS and HSS skill scores definition.<br /> 
 (d) train.py: This module is the main module to train the model. Uses argument parsers for parameters change. This has seven paramters to change the model configuration:<br /> 
@@ -33,9 +33,9 @@ For simplification:  folder inside data_labels, named simplified_data_labels tha
 (ii) --epochs: number of epochs; default=50<br /> 
 (iii) --batch_size: default=64<br /> 
 (iv) --lr: initial learning rate selection; default=0.0001<br /> 
-(v) --weight_decay: regularization parameter used by the loss function; default=0.001<br /> 
-(vi) --max_lr: OneCycleLR scheduler parameter used to control the maximum learning rate; default=0.00001<br /> 
-(vii) --models: select specific model to train. enter alex, vgg, resnet for alexnet, vgg16, and resnet resp ; default=alex<br /> 
+(v) --weight_decay: regularization parameter used by the loss function; default=0.01<br /> 
+(vi) --patience: lr scheduler parameter used to reduce learning rate at specified value which indicates the fold tolerance; default=4<br /> 
+(vii) --factor: lr scheduler parameter determining the quantitiy by which the learning rate is to be reduced; default=0.03<br /> 
 
 We used HPCE (SLURM) to run our models as jobs. For this code to work outside of SLURM, remove the line 45: job_id = os.getenv('SLURM_JOB_ID') in train.py  and specify a directory instead. However, for the SLURM env, an example bash script to run a job is given below: <br /> 
 
