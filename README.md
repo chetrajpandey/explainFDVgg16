@@ -20,7 +20,7 @@ Generated labels are stored inside data_labels.
 labeling.py generates labels with multiple columns that we can use for post result analysis. Information about flares locations, and any other flares that occured with in the period of 24 hours.
 For simplification:  folder inside data_labels, named simplified_data_labels that contains two columns: the name of the file and actual target that is sufficient to train the model.
 
-#### 3. modeling:
+#### 3. create_models:
  This code requires two GPUS, for the current batchsize for VGG16 Model, and the code is configured to use two GPUS for while training.
  Modify the line that uses nn.DataParallel in train.py to use a single GPU. 
  <br/>
