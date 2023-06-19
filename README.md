@@ -69,6 +69,6 @@ iput -rf $SLURM_JOB_ID
 ```
 ##### Trained models and prediction results are stored as LFS objects inside create_models/trained_models/ 
 #### 4. result_analysis_and_explanation:
-This folder contains 2 jupyter notebooks and other necessary files generated for explanations. 
+This folder contains 2 jupyter notebooks, 1 python file to generate visualization for spatial recall, and other necessary files generated for explanations. 
 (i) One for validation results and Location Analysis indicating correctly/incorrectly made predictions in central and near-limb locations. <br /> 
 (ii) Notebook to generate post-hoc explanations for all three aforementioned models. Default will generate maps without overlaying on the input magnetogram. Uncommenting lines with fig, ax on "plot_attributions_method_of_attribution" and commenting the active lines will provide the overlayed attributions. 
