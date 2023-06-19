@@ -33,6 +33,7 @@ For simplification:  folder inside data_labels, named simplified_data_labels tha
 (ii) --epochs: number of epochs; default=50<br /> 
 (iii) --batch_size: default=64<br /> 
 (iv) --lr: initial learning rate selection; default=0.0001<br /> 
+##### The three arguments below are used for learning rate scheduler and are optional for the code. The code uses manual lr scheduling which halves the learning rate every 5 epochs. To use the lr_scheduler uncomment the line:210 and 300, while commenting line: 226 to 228 in train.py 
 (v) --weight_decay: regularization parameter used by the loss function; default=0.01<br /> 
 (vi) --patience: lr scheduler parameter used to reduce learning rate at specified value which indicates the fold tolerance; default=4<br /> 
 (vii) --factor: lr scheduler parameter determining the quantitiy by which the learning rate is to be reduced; default=0.03<br /> 
