@@ -28,7 +28,7 @@ For simplification:  folder inside data_labels, named simplified_data_labels tha
 (a) model.py: This module contains the architecture of our model. Passing train=True utilizes the logsoftmax on the final activation. To get the probabilities during model predictions, pass train=False, and apply softmax to obtain the probabilities.<br /> 
 (b) dataloader.py: This contains custom-defined data loaders for loading FL and NF class for selected augmentations.<br /> 
 (c) evaluation.py: This includes functions to convert tensors to sklearn compatible array to compute confusion matrix. Furthermore TSS and HSS skill scores definition.<br /> 
-(e)initializenn.py: This contains code to initializes the FC-layer of the network with Kaiming and Xavier Iniliation. Choose the method of initialization inside model.py<br /> 
+(e) initializenn.py: This contains code to initializes the FC-layer of the network with Kaiming and Xavier Iniliation. Choose the method of initialization inside model.py<br /> 
 (d) train.py: This module is the main module to train the model. Uses argument parsers for parameters change. This has seven paramters to change the model configuration:<br /> 
 (i) --fold: choose from 1 to 4, to run the corresponding fold in 4CV-cross validation; default=1<br /> 
 (ii) --epochs: number of epochs; default=50<br /> 
@@ -39,7 +39,7 @@ For simplification:  folder inside data_labels, named simplified_data_labels tha
 (vi) --patience: lr scheduler parameter used to reduce learning rate at specified value which indicates the fold tolerance; default=4<br /> 
 (vii) --factor: lr scheduler parameter determining the quantitiy by which the learning rate is to be reduced; default=0.03<br /> 
 
-We used HPCE (SLURM) to run our models as jobs. For this code to work outside of SLURM, remove the line 45: job_id = os.getenv('SLURM_JOB_ID') in train.py  and specify a directory instead. However, for the SLURM env, an example bash script to run a job is given below: <br /> 
+##### We used HPCE (SLURM) to run our models as jobs. For this code to work outside of SLURM, remove the line 45: job_id = os.getenv('SLURM_JOB_ID') in train.py  and specify a directory instead. However, for the SLURM env, an example bash script to run a job is given below: <br /> 
 
 ```bash
 #!/bin/bash
@@ -67,4 +67,7 @@ python directory_to/modeling/train.py --fold=1 --batch_size=64 --lr=0.00001 --we
 
 iput -rf $SLURM_JOB_ID
 ```
-
+#### 4. result_analysis_and_explanation:
+This folder contains 2 jupyter notebooks and other necessary files generated for explanations. 
+(i) One for validation results and Location Analysis indicating correctly/incorrectly made predictions in central and near-limb locations. <br /> 
+(ii) Notebook to generate post-hoc explanations for all three aforementioned models. Default will generate maps without overlaying on the input magnetogram. Uncommenting lines with fig, ax on "plot_attributions_method_of_attribution" and commenting the active lines will provide the overlayed attributions. 
