@@ -67,6 +67,7 @@ python directory_to/modeling/train.py --fold=1 --batch_size=64 --lr=0.00001 --we
 
 iput -rf $SLURM_JOB_ID
 ```
+##### Trained models and prediction results are stored as LFS objects inside create_models/trained_models/ 
 #### 4. result_analysis_and_explanation:
 This folder contains 2 jupyter notebooks and other necessary files generated for explanations. 
 (i) One for validation results and Location Analysis indicating correctly/incorrectly made predictions in central and near-limb locations. <br /> 
